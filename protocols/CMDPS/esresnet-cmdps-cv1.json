@@ -11,20 +11,20 @@
     "batch_test": 16,
     "workers_train": 4,
     "workers_test": 4,
-    "epochs": 20,
+    "epochs": 200,
     "log_interval": 10,
     "saved_models_path": "/home/sjbang/workspace/BDAI_Mobis/ESResNet/saved_model_path"
   },
   "Model": {
     "class": "model.esresnet.ESResNet",
     "args": {
-      "n_fft": 2048,
+      "n_fft": 512,
       "window": "blackmanharris",
       "normalized": true,
       "onesided": true,
       "spec_height": -1,
       "spec_width": -1,
-      "num_classes": 50,
+      "num_classes": 2,
       "pretrained": false,
       "lock_pretrained": false
     }
@@ -47,11 +47,11 @@
     }
   },
   "Dataset": {
-    "class": "utils.datasets.ESC50",
+    "class": "utils.datasets.RPS_binary",
     "args": {
-      "root": "/path/to/ESC50",
-      "sample_rate": 44100,
-      "fold": 2,
+      "root": "/home/sjbang/workspace/BDAI_Mobis/ESResNet/dataset/1.0RPS",
+      "sample_rate": 12800,
+      "fold": 0,
       "training": {"key": "train", "yes": true, "no": false}
     }
   },
@@ -72,22 +72,22 @@
     },
     {
       "class": "utils.transforms.RandomPadding",
-      "args": {"out_len": 220500},
+      "args": {"out_len": 187178},
       "test": false
     },
     {
       "class": "utils.transforms.RandomCrop",
-      "args": {"out_len": 220500},
+      "args": {"out_len": 187178},
       "test": false
     },
     {
       "class": "utils.transforms.RandomPadding",
-      "args": {"out_len": 220500, "train": false},
+      "args": {"out_len": 187178, "train": false},
       "train": false
     },
     {
       "class": "utils.transforms.RandomCrop",
-      "args": {"out_len": 220500, "train": false},
+      "args": {"out_len": 187178, "train": false},
       "train": false
     }
   ],

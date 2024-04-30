@@ -401,28 +401,48 @@ class _ESResNet(ResNet):
         return y_pred if loss is None else (y_pred, loss)
 
     def spectrogram(self, x: torch.Tensor) -> torch.Tensor:
+        
+        # print(0)
+        # print(x.shape)  # torch.Size([16, 1, 220500])
+        # print(x.view(-1, x.shape[-1]).shape)  # torch.Size([16, 220500])
+        
         spec = torch.stft(
             x.view(-1, x.shape[-1]),
             n_fft=self.n_fft,
-            hop_length=self.hop_length,
-            win_length=self.win_length,
+            hop_length=None,
+            win_length=None,
             window=self.window,
             pad_mode='reflect',
             normalized=self.normalized,
             onesided=True
         )
 
+        # print(1)
+        # print(spec.shape)  # torch.Size([16, 1025, 394, 2])
+
         if not self.onesided:
             spec = torch.cat((torch.flip(spec, dims=(-3,)), spec), dim=-3)
+
+        # print(2)
+        # print(spec.shape)  # torch.Size([16, 1025, 394, 2])
 
         spec_height_3_bands = spec.shape[-3] // 3
         spec_height_single_band = 3 * spec_height_3_bands
         spec = spec[:, :spec_height_single_band]
 
+        # print(3)
+        # print(spec.shape)  # torch.Size([16, 1023, 394, 2])
+
         spec = spec.reshape(x.shape[0], -1, spec.shape[-3] // 3, *spec.shape[-2:])
 
         spec_height = spec.shape[-3] if self.spec_height < 1 else self.spec_height
         spec_width = spec.shape[-2] if self.spec_width < 1 else self.spec_width
+
+        # print(4)
+        # print(spec.shape)  # torch.Size([16, 3, 341, 394, 2])
+        # print(spec_height)
+        # print(spec_width)
+        # afdsafas
 
         pow_spec = spec[..., 0] ** 2 + spec[..., 1] ** 2
 
