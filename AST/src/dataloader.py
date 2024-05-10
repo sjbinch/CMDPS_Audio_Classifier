@@ -18,6 +18,14 @@ import torch.nn.functional
 from torch.utils.data import Dataset
 import random
 
+def make_index_dict_mdps(num_class):
+    if num_class == 2:
+        return {'Normal':0, 'GRR':1, 'DOL':1, 'SG':1}
+    elif num_class == 3:
+        return {'Normal':0, 'GRR':1, 'DOL':1, 'SG':2}
+    elif num_class == 4:
+        return {'Normal':0, 'GRR':1, 'DOL':2, 'SG':3}
+
 def make_index_dict(label_csv):
     index_lookup = {}
     with open(label_csv, 'r') as f:
@@ -55,7 +63,7 @@ def preemphasis(signal,coeff=0.97):
     return np.append(signal[0],signal[1:]-coeff*signal[:-1])
 
 class AudiosetDataset(Dataset):
-    def __init__(self, dataset_json_file, audio_conf, label_csv=None):
+    def __init__(self, dataset_json_file, audio_conf, label_csv=None, mdps=False):
         """
         Dataset that manages audio recordings
         :param audio_conf: Dictionary containing the audio loading and preprocessing settings
@@ -68,32 +76,53 @@ class AudiosetDataset(Dataset):
         self.data = data_json['data']
         self.audio_conf = audio_conf
         print('---------------the {:s} dataloader---------------'.format(self.audio_conf.get('mode')))
-        self.melbins = self.audio_conf.get('num_mel_bins')
-        self.freqm = self.audio_conf.get('freqm')
-        self.timem = self.audio_conf.get('timem')
+        self.melbins = self.audio_conf.get('num_mel_bins') # num_mel_bins = 128
+        self.freqm = self.audio_conf.get('freqm') # freqm = 24
+        self.timem = self.audio_conf.get('timem') # timem = 96
         print('now using following mask: {:d} freq, {:d} time'.format(self.audio_conf.get('freqm'), self.audio_conf.get('timem')))
-        self.mixup = self.audio_conf.get('mixup')
+        self.mixup = self.audio_conf.get('mixup') # mixup = 0
         print('now using mix-up with rate {:f}'.format(self.mixup))
-        self.dataset = self.audio_conf.get('dataset')
+        self.dataset = self.audio_conf.get('dataset') # dataset = mdps
         print('now process ' + self.dataset)
         # dataset spectrogram mean and std, used to normalize the input
         self.norm_mean = self.audio_conf.get('mean')
         self.norm_std = self.audio_conf.get('std')
         # skip_norm is a flag that if you want to skip normalization to compute the normalization stats using src/get_norm_stats.py, if Ture, input normalization will be skipped for correctly calculating the stats.
         # set it as True ONLY when you are getting the normalization stats.
-        self.skip_norm = self.audio_conf.get('skip_norm') if self.audio_conf.get('skip_norm') else False
+        self.skip_norm = self.audio_conf.get('skip_norm') if self.audio_conf.get('skip_norm') else False # False
         if self.skip_norm:
             print('now skip normalization (use it ONLY when you are computing the normalization stats).')
         else:
             print('use dataset mean {:.3f} and std {:.3f} to normalize the input.'.format(self.norm_mean, self.norm_std))
         # if add noise for data augmentation
-        self.noise = self.audio_conf.get('noise')
+        self.noise = self.audio_conf.get('noise') # False
         if self.noise == True:
             print('now use noise augmentation')
 
-        self.index_dict = make_index_dict(label_csv)
+        self.mdps = mdps
+        self.index_dict = make_index_dict_mdps(num_class=2) if mdps else make_index_dict(label_csv)
         self.label_num = len(self.index_dict)
         print('number of classes is {:d}'.format(self.label_num))
+
+
+    def _wav2stft(self, filename):
+        waveform, sr = torchaudio.load(filename)
+        waveform = waveform - waveform.mean()
+
+        result = torchaudio.transforms.Spectrogram(n_fft=512, hop_length=128)(waveform.flatten())
+        target_length = self.audio_conf.get('target_length')
+        n_frames = result.shape[0]
+
+        p = target_length - n_frames
+
+        # cut and pad
+        if p > 0:
+            m = torch.nn.ZeroPad2d((0, 0, 0, p))
+            result = m(result)
+        elif p < 0:
+            result = result[0:target_length, :]
+
+        return result
 
     def _wav2fbank(self, filename, filename2=None):
         # mixup
@@ -163,7 +192,7 @@ class AudiosetDataset(Dataset):
             mix_sample_idx = random.randint(0, len(self.data)-1)
             mix_datum = self.data[mix_sample_idx]
             # get the mixed fbank
-            fbank, mix_lambda = self._wav2fbank(datum['wav'], mix_datum['wav'])
+            result, mix_lambda = self._wav2fbank(datum['wav'], mix_datum['wav'])
             # initialize the label
             label_indices = np.zeros(self.label_num)
             # add sample 1 labels
@@ -177,7 +206,10 @@ class AudiosetDataset(Dataset):
         else:
             datum = self.data[index]
             label_indices = np.zeros(self.label_num)
-            fbank, mix_lambda = self._wav2fbank(datum['wav'])
+            if self.mdps:
+                result = self._wav2stft(datum['wav'])
+            else:
+                result, mix_lambda = self._wav2fbank(datum['wav'])
             for label_str in datum['labels'].split(','):
                 label_indices[int(self.index_dict[label_str])] = 1.0
 
@@ -186,32 +218,32 @@ class AudiosetDataset(Dataset):
         # SpecAug, not do for eval set
         freqm = torchaudio.transforms.FrequencyMasking(self.freqm)
         timem = torchaudio.transforms.TimeMasking(self.timem)
-        fbank = torch.transpose(fbank, 0, 1)
+        result = torch.transpose(result, 0, 1)
         # this is just to satisfy new torchaudio version, which only accept [1, freq, time]
-        fbank = fbank.unsqueeze(0)
+        result = result.unsqueeze(0)
         if self.freqm != 0:
-            fbank = freqm(fbank)
+            result = freqm(result)
         if self.timem != 0:
-            fbank = timem(fbank)
+            result = timem(result)
         # squeeze it back, it is just a trick to satisfy new torchaudio version
-        fbank = fbank.squeeze(0)
-        fbank = torch.transpose(fbank, 0, 1)
+        result = result.squeeze(0)
+        result = torch.transpose(result, 0, 1)
 
         # normalize the input for both training and test
         if not self.skip_norm:
-            fbank = (fbank - self.norm_mean) / (self.norm_std * 2)
+            result = (result - self.norm_mean) / (self.norm_std * 2)
         # skip normalization the input if you are trying to get the normalization stats.
         else:
             pass
 
         if self.noise == True:
-            fbank = fbank + torch.rand(fbank.shape[0], fbank.shape[1]) * np.random.rand() / 10
-            fbank = torch.roll(fbank, np.random.randint(-10, 10), 0)
+            result = result + torch.rand(result.shape[0], result.shape[1]) * np.random.rand() / 10
+            result = torch.roll(result, np.random.randint(-10, 10), 0)
 
-        mix_ratio = min(mix_lambda, 1-mix_lambda) / max(mix_lambda, 1-mix_lambda)
+        # mix_ratio = min(mix_lambda, 1-mix_lambda) / max(mix_lambda, 1-mix_lambda)
 
         # the output fbank shape is [time_frame_num, frequency_bins], e.g., [1024, 128]
-        return fbank, label_indices
+        return result, label_indices
 
     def __len__(self):
         return len(self.data)
