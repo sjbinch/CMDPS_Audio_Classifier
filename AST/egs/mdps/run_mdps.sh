@@ -16,6 +16,7 @@ export TORCH_HOME=../../pretrained_models
 
 model=ast
 dataset=mdps
+sample_type=1.0RPS
 imagenetpretrain=True
 audiosetpretrain=False
 bal=none
@@ -63,12 +64,12 @@ do
 
   exp_dir=${base_exp_dir}/fold${fold}
 
-  tr_data=./data/datafiles/mdps_train_data_${fold}.json
-  te_data=./data/datafiles/mdps_eval_data_${fold}.json
+  tr_data=./data/datafiles/mdps_train_data_${sample_type}_${fold}.json
+  te_data=./data/datafiles/mdps_eval_data_${sample_type}_${fold}.json
 
   CUDA_CACHE_DISABLE=1 python -W ignore ../../src/run.py --model ${model} --dataset ${dataset} \
   --data-train ${tr_data} --data-val ${te_data} --exp-dir $exp_dir \
-  --n_class ${n_class} \
+  --n_class ${n_class} --sample_type ${sample_type}\
   --lr $lr --n-epochs ${epoch} --batch-size $batch_size --save_model False \
   --freqm $freqm --timem $timem --mixup ${mixup} --bal ${bal} \
   --tstride $tstride --fstride $fstride --imagenet_pretrain $imagenetpretrain --audioset_pretrain $audiosetpretrain \

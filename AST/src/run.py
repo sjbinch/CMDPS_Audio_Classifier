@@ -35,6 +35,7 @@ if __name__ == "__main__":
     parser.add_argument("--data-eval", type=str, default='', help="evaluation data json")
     parser.add_argument("--label-csv", type=str, default='', help="csv with class labels")
     parser.add_argument("--n_class", type=int, default=527, help="number of classes")
+    parser.add_argument("--sample_type", type=str, default='', help="sample type for mdps")
     parser.add_argument("--model", type=str, default='ast', help="the model used")
     parser.add_argument("--dataset", type=str, default="audioset", help="the dataset used")
 

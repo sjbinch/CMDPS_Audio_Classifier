@@ -44,11 +44,11 @@ def get_immediate_files(a_dir):
 if os.path.exists('./data/datafiles') == False:
     os.mkdir('./data/datafiles')
 
-for exp_type in ['1.0RPS','ES','LINE']:
+for sample_type in ['1.0RPS','ES','LINE']:
     fold = 1
     base_path = f"./data/{exp_type}/audio/"
 
-    meta = pd.read_csv('./data/{exp_type}/audio/{exp_type}_meta.csv')
+    meta = pd.read_csv('./data/{sample_type}/meta/{sample_type}_meta.csv')
     sample_count = len(meta)
     meta = meta.sample(frac=1, ignore_index=True, random_state=42)
     meta.iloc[:sample_count//5, 'fold'] = 0
@@ -68,10 +68,10 @@ for exp_type in ['1.0RPS','ES','LINE']:
 
     print('fold {:d}: {:d} training samples, {:d} test samples'.format(fold, len(train_wav_list), len(eval_wav_list)))
 
-    with open('./data/datafiles/mdps_train_data_'+ str(fold) +'.json', 'w') as f:
+    with open(f'./data/datafiles/mdps_train_data_{sample_type}_{fold}.json', 'w') as f:
         json.dump({'data': train_wav_list}, f, indent=1)
 
-    with open('./data/datafiles/mdps_eval_data_'+ str(fold) +'.json', 'w') as f:
+    with open(f'./data/datafiles/mdps_eval_data_{sample_type}_{fold}.json', 'w') as f:
         json.dump({'data': eval_wav_list}, f, indent=1)
 
 print('Finished MDPS Preparation')
