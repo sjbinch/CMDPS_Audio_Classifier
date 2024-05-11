@@ -117,9 +117,10 @@ if __name__ == "__main__":
         # # if add noise for data augmentation, only use for speech commands
         # noise = {'audioset': False, 'esc50': False, 'speechcommands':True}
 
-        audio_conf = {'num_mel_bins': 128, 'target_length': args.audio_length, 'freqm': args.freqm, 'timem': args.timem, 'mixup': args.mixup, 'dataset': args.dataset, 'mode':'train', 'mean':args.dataset_mean, 'std':args.dataset_std,
-                    'noise':args.noise}
-        val_audio_conf = {'num_mel_bins': 128, 'target_length': args.audio_length, 'freqm': 0, 'timem': 0, 'mixup': 0, 'dataset': args.dataset, 'mode':'evaluation', 'mean':args.dataset_mean, 'std':args.dataset_std, 'noise':False}
+        audio_conf = {'num_mel_bins': 128, 'target_length': args.audio_length, 'freqm': args.freqm, 'timem': args.timem, 'mixup': args.mixup, 'dataset': args.dataset,
+        'mode':'train', 'mean':args.dataset_mean, 'std':args.dataset_std, 'noise':args.noise, 'num_class':args.n_class}
+        val_audio_conf = {'num_mel_bins': 128, 'target_length': args.audio_length, 'freqm': 0, 'timem': 0, 'mixup': 0, 'dataset': args.dataset, 'mode':'evaluation', 
+        'mean':args.dataset_mean, 'std':args.dataset_std, 'noise':False, 'num_class':args.n_class}
         mdps = True if args.dataset == 'mdps' else False
 
         if args.bal == 'bal':

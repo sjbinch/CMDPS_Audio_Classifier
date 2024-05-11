@@ -45,6 +45,8 @@ lrscheduler_start=5
 lrscheduler_step=1
 lrscheduler_decay=0.85
 
+n_class=2
+
 base_exp_dir=./exp/test-${dataset}-f$fstride-t$tstride-imp$imagenetpretrain-asp$audiosetpretrain-b$batch_size-lr${lr}
 
 python ./prep_mdps.py
@@ -55,18 +57,18 @@ if [ -d $base_exp_dir ]; then
 fi
 mkdir -p $base_exp_dir
 
-for((fold=1;fold<=5;fold++));
+for((fold=1;fold<=1;fold++));
 do
   echo 'now process fold'${fold}
 
   exp_dir=${base_exp_dir}/fold${fold}
 
-  tr_data=./data/datafiles/esc_train_data_${fold}.json
-  te_data=./data/datafiles/esc_eval_data_${fold}.json
+  tr_data=./data/datafiles/mdps_train_data_${fold}.json
+  te_data=./data/datafiles/mdps_eval_data_${fold}.json
 
   CUDA_CACHE_DISABLE=1 python -W ignore ../../src/run.py --model ${model} --dataset ${dataset} \
   --data-train ${tr_data} --data-val ${te_data} --exp-dir $exp_dir \
-  --label-csv ./data/esc_class_labels_indices.csv --n_class 50 \
+  --n_class ${n_class} \
   --lr $lr --n-epochs ${epoch} --batch-size $batch_size --save_model False \
   --freqm $freqm --timem $timem --mixup ${mixup} --bal ${bal} \
   --tstride $tstride --fstride $fstride --imagenet_pretrain $imagenetpretrain --audioset_pretrain $audiosetpretrain \

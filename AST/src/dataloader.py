@@ -100,7 +100,7 @@ class AudiosetDataset(Dataset):
             print('now use noise augmentation')
 
         self.mdps = mdps
-        self.index_dict = make_index_dict_mdps(num_class=2) if mdps else make_index_dict(label_csv)
+        self.index_dict = make_index_dict_mdps(num_class=audio_conf.num_class) if mdps else make_index_dict(label_csv)
         self.label_num = len(self.index_dict)
         print('number of classes is {:d}'.format(self.label_num))
 
