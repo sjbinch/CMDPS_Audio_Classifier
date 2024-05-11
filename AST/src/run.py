@@ -107,6 +107,14 @@ if __name__ == "__main__":
     if sys.platform == "win32":
         args.num_workers = 0
 
+    if args.dataset = 'mdps':
+        if args.sample_type == '1.0RPS':
+            args.audio_length = 1500
+        elif args.sample_type == 'ES':
+            args.audio_length = 1500
+        elif args.sample_type == 'LINE':
+            args.audio_length = 600
+
     # transformer based model
     if args.model == 'ast':
         print('now train a audio spectrogram transformer model')
