@@ -100,7 +100,7 @@ class AudiosetDataset(Dataset):
             print('now use noise augmentation')
 
         self.mdps = mdps
-        self.index_dict = make_index_dict_mdps(num_class=audio_conf.num_class) if mdps else make_index_dict(label_csv)
+        self.index_dict = make_index_dict_mdps(num_class=audio_conf.get('num_class')) if mdps else make_index_dict(label_csv)
         self.label_num = len(self.index_dict)
         print('number of classes is {:d}'.format(self.label_num))
 
@@ -109,7 +109,7 @@ class AudiosetDataset(Dataset):
         waveform, sr = torchaudio.load(filename)
         waveform = waveform - waveform.mean()
 
-        result = torchaudio.transforms.Spectrogram(n_fft=512, hop_length=128)(waveform.flatten())
+        result = torchaudio.transforms.Spectrogram(n_fft=512, hop_length=128)(waveform.flatten()).t()
         target_length = self.audio_conf.get('target_length')
         n_frames = result.shape[0]
 

@@ -150,7 +150,7 @@ if __name__ == "__main__":
             dataloader.AudiosetDataset(args.data_val, label_csv=args.label_csv, audio_conf=val_audio_conf, mdps=mdps),
             batch_size=args.batch_size*2, shuffle=False, num_workers=args.num_workers, pin_memory=True)
 
-        audio_model = models.ASTModel(label_dim=args.n_class, fstride=args.fstride, tstride=args.tstride, input_fdim=128,
+        audio_model = models.ASTModel(label_dim=args.n_class, fstride=args.fstride, tstride=args.tstride, input_fdim=257,
                                     input_tdim=args.audio_length, imagenet_pretrain=args.imagenet_pretrain,
                                     audioset_pretrain=args.audioset_pretrain, model_size='tiny224')
 

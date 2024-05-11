@@ -30,7 +30,7 @@ freqm=0
 timem=0
 mixup=0
 epoch=100
-batch_size=12
+batch_size=6
 fstride=10
 tstride=10
 
