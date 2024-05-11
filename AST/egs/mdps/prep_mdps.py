@@ -46,18 +46,18 @@ if os.path.exists('./data/datafiles') == False:
 
 for sample_type in ['1.0RPS','ES','LINE']:
     fold = 1
-    base_path = f"./data/{exp_type}/audio/"
+    base_path = f"./data/{sample_type}/audio/"
 
-    meta = pd.read_csv('./data/{sample_type}/meta/{sample_type}_meta.csv')
+    meta = pd.read_csv(f'./data/{sample_type}/meta/{sample_type}_meta.csv')
     sample_count = len(meta)
     meta = meta.sample(frac=1, ignore_index=True, random_state=42)
-    meta.iloc[:sample_count//5, 'fold'] = 0
+    meta.loc[:sample_count//5, 'fold'] = 0
 
     train_wav_list = []
     eval_wav_list = []
     for i in range(sample_count):
         cur_label = meta['category'][i]
-        cur_path = meta['filename'][i]
+        cur_path = meta['filename'][i].split('/')[-1]
         cur_fold = meta['fold'][i]
         # /m/07rwj is just a dummy prefix
         cur_dict = {"wav": base_path + cur_path, "labels": cur_label}
@@ -66,7 +66,7 @@ for sample_type in ['1.0RPS','ES','LINE']:
         else:
             eval_wav_list.append(cur_dict)
 
-    print('fold {:d}: {:d} training samples, {:d} test samples'.format(fold, len(train_wav_list), len(eval_wav_list)))
+    print(sample_type, 'fold {:d}: {:d} training samples, {:d} test samples'.format(fold, len(train_wav_list), len(eval_wav_list)))
 
     with open(f'./data/datafiles/mdps_train_data_{sample_type}_{fold}.json', 'w') as f:
         json.dump({'data': train_wav_list}, f, indent=1)
