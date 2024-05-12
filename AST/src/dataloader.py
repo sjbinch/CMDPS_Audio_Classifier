@@ -101,7 +101,7 @@ class AudiosetDataset(Dataset):
 
         self.mdps = mdps
         self.index_dict = make_index_dict_mdps(num_class=audio_conf.get('num_class')) if mdps else make_index_dict(label_csv)
-        self.label_num = len(self.index_dict)
+        self.label_num = len(set(self.index_dict.values()))
         print('number of classes is {:d}'.format(self.label_num))
 
 

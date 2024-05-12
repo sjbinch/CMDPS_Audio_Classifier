@@ -144,11 +144,11 @@ if __name__ == "__main__":
             print('balanced sampler is not used')
             train_loader = torch.utils.data.DataLoader(
                 dataloader.AudiosetDataset(args.data_train, label_csv=args.label_csv, audio_conf=audio_conf, mdps=mdps),
-                batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, pin_memory=True)
+                batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, pin_memory=True, drop_last=True)
 
         val_loader = torch.utils.data.DataLoader(
             dataloader.AudiosetDataset(args.data_val, label_csv=args.label_csv, audio_conf=val_audio_conf, mdps=mdps),
-            batch_size=args.batch_size*2, shuffle=False, num_workers=args.num_workers, pin_memory=True)
+            batch_size=args.batch_size*2, shuffle=False, num_workers=args.num_workers, pin_memory=True, drop_last=True)
 
         audio_model = models.ASTModel(label_dim=args.n_class, fstride=args.fstride, tstride=args.tstride, input_fdim=257,
                                     input_tdim=args.audio_length, imagenet_pretrain=args.imagenet_pretrain,

@@ -30,12 +30,12 @@ freqm=0
 timem=0
 mixup=0
 epoch=100
-batch_size=6
+batch_size=2
 fstride=10
 tstride=10
 
 dataset_mean=0
-dataset_std=0
+dataset_std=1
 audio_length=512
 noise=False
 
