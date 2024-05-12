@@ -26,13 +26,14 @@ then
 else
   lr=1e-4
 fi
-freqm=0
+freqm=50
 timem=0
 mixup=0
-epoch=20
-batch_size=2
+epoch=50
+batch_size=8
 fstride=10
 tstride=10
+model_size=tiny224
 
 dataset_mean=0
 dataset_std=1
@@ -43,7 +44,7 @@ metrics=acc
 loss=CE
 warmup=False
 lrscheduler_start=5
-lrscheduler_step=1
+lrscheduler_step=5
 lrscheduler_decay=0.85
 
 n_class=2
@@ -69,7 +70,7 @@ do
 
   CUDA_CACHE_DISABLE=1 python -W ignore ../../src/run.py --model ${model} --dataset ${dataset} \
   --data-train ${tr_data} --data-val ${te_data} --exp-dir $exp_dir \
-  --n_class ${n_class} --sample_type ${sample_type}\
+  --n_class ${n_class} --sample_type ${sample_type} --model_size ${model_size}\
   --lr $lr --n-epochs ${epoch} --batch-size $batch_size --save_model False \
   --freqm $freqm --timem $timem --mixup ${mixup} --bal ${bal} \
   --tstride $tstride --fstride $fstride --imagenet_pretrain $imagenetpretrain --audioset_pretrain $audiosetpretrain \

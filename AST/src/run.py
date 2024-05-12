@@ -37,6 +37,7 @@ if __name__ == "__main__":
     parser.add_argument("--n_class", type=int, default=527, help="number of classes")
     parser.add_argument("--sample_type", type=str, default='', help="sample type for mdps")
     parser.add_argument("--model", type=str, default='ast', help="the model used")
+    parser.add_argument("--model_size", type=str, default='tiny224', help="the model size used")
     parser.add_argument("--dataset", type=str, default="audioset", help="the dataset used")
 
     parser.add_argument("--exp-dir", type=str, default="", help="directory to dump experiments")
@@ -154,7 +155,7 @@ if __name__ == "__main__":
 
         audio_model = models.ASTModel(label_dim=args.n_class, fstride=args.fstride, tstride=args.tstride, input_fdim=257,
                                     input_tdim=args.audio_length, imagenet_pretrain=args.imagenet_pretrain,
-                                    audioset_pretrain=args.audioset_pretrain, model_size='tiny224')
+                                    audioset_pretrain=args.audioset_pretrain, model_size=args.model_size)
 
     print("\nCreating experiment directory: %s" % args.exp_dir)
     os.makedirs("%s/models" % args.exp_dir, exist_ok=True)
