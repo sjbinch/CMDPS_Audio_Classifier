@@ -137,13 +137,15 @@ if __name__ == "__main__":
             samples_weight = np.loadtxt(args.data_train[:-5]+'_weight.csv', delimiter=',')
             sampler = WeightedRandomSampler(samples_weight, len(samples_weight), replacement=True)
 
+            train_dataset = dataloader.AudiosetDataset(args.data_train, label_csv=args.label_csv, audio_conf=audio_conf)
             train_loader = torch.utils.data.DataLoader(
-                dataloader.AudiosetDataset(args.data_train, label_csv=args.label_csv, audio_conf=audio_conf),
+                train_dataset,
                 batch_size=args.batch_size, sampler=sampler, num_workers=args.num_workers, pin_memory=True)
         else:
             print('balanced sampler is not used')
+            train_dataset = dataloader.AudiosetDataset(args.data_train, label_csv=args.label_csv, audio_conf=audio_conf, mdps=mdps)
             train_loader = torch.utils.data.DataLoader(
-                dataloader.AudiosetDataset(args.data_train, label_csv=args.label_csv, audio_conf=audio_conf, mdps=mdps),
+                train_dataset,
                 batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, pin_memory=True, drop_last=True)
 
         val_loader = torch.utils.data.DataLoader(
@@ -158,6 +160,12 @@ if __name__ == "__main__":
     os.makedirs("%s/models" % args.exp_dir, exist_ok=True)
     with open("%s/args.pkl" % args.exp_dir, "wb") as f:
         pickle.dump(args, f)
+
+    labels = torch.zeros(args.n_class, dtype=torch.float)
+    for _, target in train_dataset:
+        labels += target
+
+    print('Training labels ', ', '.join([f'type {idx} : {val.item()}' for idx, val in enumerate(labels.int())]))
 
     print('Now starting training for {:d} epochs'.format(args.n_epochs))
     
