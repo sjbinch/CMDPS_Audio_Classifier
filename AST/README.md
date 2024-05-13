@@ -4,6 +4,7 @@
  - [Introduction](#Introduction)
  - [Citing](#Citing)  
  - [Getting Started](#Getting-Started)
+ - [MDPS](#MDPS)  
  - [ESC-50 Recipe](#ESC-50-Recipe)  
  - [Speechcommands Recipe](#Speechcommands-V2-Recipe)  
  - [AudioSet Recipe](#Audioset-Recipe)
@@ -121,6 +122,25 @@ print(test_output.shape)
 ```  
 
 We have an one-click, self-contained Google Colab script for (pretrained) AST inference and attention visualization. Please test the model with your own audio at [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YuanGongND/ast/blob/master/colab/AST_Inference_Demo.ipynb) by one click (no GPU needed).
+
+## MDPS
+Put mdps wav data to `AST/egs/mdps/data/{sample_type}/audio/` and meta csv to `AST/egs/mdps/data/{sample_type}/meta/`.
+Change sample_type, n_class of `AST/egs/mdps/run_mdps.sh` for experiments.
+The result is saved in `ast/egs/esc50/exp/yourexpname/acc_fold.csv` (the accuracy of fold 1-5 and the averaged accuracy), you can also check details in `result.csv` and `best_result.csv` (accuracy, AUC, loss, etc of each epoch / best epoch).
+
+Python version 3.8.10 is required for dependency.
+For dependency, run:
+```
+pipenv shell
+pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+pip install -r requirements.txt
+```
+
+For experiments, run:
+``` 
+cd AST/egs/mdps
+(local user) bash ./run_mdps.sh
+```  
 
 ## ESC-50 Recipe  
 The ESC-50 recipe is in `ast/egs/esc50/run_esc.sh`, the script will automatically download the ESC-50 dataset and resample it to 16kHz, then run standard 5-cross validation and report the result.

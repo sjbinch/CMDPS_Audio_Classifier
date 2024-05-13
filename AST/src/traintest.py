@@ -98,6 +98,7 @@ def train(audio_model, train_loader, test_loader, args):
     print("start training...")
     result = np.zeros([args.n_epochs, 10])
     audio_model.train()
+    n_gpu = torch.cuda.device_count()
     while epoch < args.n_epochs + 1:
         begin_time = time.time()
         end_time = time.time()
@@ -105,6 +106,7 @@ def train(audio_model, train_loader, test_loader, args):
         print('---------------')
         print(datetime.datetime.now())
         print("current #epochs=%s, #steps=%s" % (epoch, global_step))
+        print([torch.cuda.memory_reserved(i) for i in range(n_gpu)])
 
         for i, (audio_input, labels) in enumerate(train_loader):
 
@@ -167,7 +169,7 @@ def train(audio_model, train_loader, test_loader, args):
             global_step += 1
 
         print('start validation')
-        stats, valid_loss = validate(audio_model, test_loader, args, epoch)
+        stats, valid_loss, cf_matrix = validate(audio_model, test_loader, args, epoch)
 
         # ensemble results
         cum_stats = validate_ensemble(args, epoch)
@@ -194,6 +196,7 @@ def train(audio_model, train_loader, test_loader, args):
         print("d_prime: {:.6f}".format(d_prime(mAUC)))
         print("train_loss: {:.6f}".format(loss_meter.avg))
         print("valid_loss: {:.6f}".format(valid_loss))
+        print(cf_matrix)
 
         if main_metrics == 'mAP':
             result[epoch-1, :] = [mAP, mAUC, average_precision, average_recall, d_prime(mAUC), loss_meter.avg, valid_loss, cum_mAP, cum_mAUC, optimizer.param_groups[0]['lr']]
@@ -216,21 +219,23 @@ def train(audio_model, train_loader, test_loader, args):
             best_cum_epoch = epoch
             best_cum_mAP = cum_mAP
 
-        if best_epoch == epoch:
-            torch.save(audio_model.state_dict(), "%s/models/best_audio_model.pth" % (exp_dir))
-            torch.save(optimizer.state_dict(), "%s/models/best_optim_state.pth" % (exp_dir))
+        if args.save_model == True:
+            if best_epoch == epoch:
+                torch.save(audio_model.state_dict(), "%s/models/best_audio_model.pth" % (exp_dir))
+                torch.save(optimizer.state_dict(), "%s/models/best_optim_state.pth" % (exp_dir))
 
-        torch.save(audio_model.state_dict(), "%s/models/audio_model.%d.pth" % (exp_dir, epoch))
-        if len(train_loader.dataset) > 2e5:
-            torch.save(optimizer.state_dict(), "%s/models/optim_state.%d.pth" % (exp_dir, epoch))
+            torch.save(audio_model.state_dict(), "%s/models/audio_model.%d.pth" % (exp_dir, epoch))
+            if len(train_loader.dataset) > 2e5:
+                torch.save(optimizer.state_dict(), "%s/models/optim_state.%d.pth" % (exp_dir, epoch))
 
         scheduler.step()
 
         print('Epoch-{0} lr: {1}'.format(epoch, optimizer.param_groups[0]['lr']))
 
-        with open(exp_dir + '/stats_' + str(epoch) +'.pickle', 'wb') as handle:
-            pickle.dump(stats, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        _save_progress()
+        if args.save_model == True:
+            with open(exp_dir + '/stats_' + str(epoch) +'.pickle', 'wb') as handle:
+                pickle.dump(stats, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            _save_progress()
 
         finish_time = time.time()
         print('epoch {:d} training time: {:.3f}'.format(epoch, finish_time-begin_time))
@@ -309,6 +314,7 @@ def validate(audio_model, val_loader, args, epoch):
         target = torch.cat(A_targets)
         loss = np.mean(A_loss)
         stats = calculate_stats(audio_output, target)
+        cf_matrix = calculate_confusion_matrix(audio_output, target)
 
         # save the prediction here
         exp_dir = args.exp_dir
@@ -317,7 +323,7 @@ def validate(audio_model, val_loader, args, epoch):
             np.savetxt(exp_dir+'/predictions/target.csv', target, delimiter=',')
         np.savetxt(exp_dir+'/predictions/predictions_' + str(epoch) + '.csv', audio_output, delimiter=',')
 
-    return stats, loss
+    return stats, loss, cf_matrix
 
 def validate_ensemble(args, epoch):
     exp_dir = args.exp_dir
@@ -362,5 +368,5 @@ def validate_wa(audio_model, val_loader, args, start_epoch, end_epoch):
 
     torch.save(audio_model.state_dict(), exp_dir + '/models/audio_model_wa.pth')
 
-    stats, loss = validate(audio_model, val_loader, args, 'wa')
+    stats, loss, cf_matrix = validate(audio_model, val_loader, args, 'wa')
     return stats

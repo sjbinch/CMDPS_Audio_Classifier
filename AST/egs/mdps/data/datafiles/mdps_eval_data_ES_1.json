@@ -1,0 +1,444 @@
+{
+ "data": [
+  {
+   "wav": "./data/ES/audio/#13_SX2_C_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "GRR"
+  },
+  {
+   "wav": "./data/ES/audio/#20_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#11_SX2_B_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#23_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#26_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#16_SX2_A_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#45_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#38_SX2_A_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#37_SX2_C_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#35_SX2_B_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#02_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#29_SX2_C_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#34_SX2_B_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#35_SX2_B_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#41_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#29_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#29_SX2_C_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#14_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#14_SX2_C_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#22_SX2_C_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#19_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#41_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#44_SX2_C_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#44_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#20_SX2_C_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "GRR"
+  },
+  {
+   "wav": "./data/ES/audio/#01_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#03_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#03_SX2_A_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#03_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#35_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#18_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#24_SX2_B_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#20_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#21_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#36_SX2_B_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#21_SX2_A_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#16_SX2_A_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#37_SX2_B_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#23_SX2_B_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#40_SX2_C_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#40_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#13_SX2_B_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#20_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#10_SX2_A_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#16_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#10_SX2_B_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#21_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#35_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#14_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#44_SX2_C_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#08_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#37_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#29_SX2_A_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#12_SX2_B_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "GRR"
+  },
+  {
+   "wav": "./data/ES/audio/#39_SX2_B_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#21_SX2_A_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#03_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#42_SX2_C_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#25_SX2_A_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#4_SX2_C_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#36_SX2_C_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#20_SX2_B_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#23_SX2_A_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#03_SX2_C_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#37_SX2_A_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#22_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#19_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#03_SX2_A_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#37_SX2_A_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#20_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#16_SX2_B_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#38_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#6_SX2_B_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#21_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#39_SX2_B_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#19_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#26_SX2_A_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#20_SX2_A_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#18_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#42_SX2_C_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#16_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#31_SX2_C_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "GRR"
+  },
+  {
+   "wav": "./data/ES/audio/#27_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#22_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#44_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#09_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#29_SX2_C_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#20_SX2_C_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "GRR"
+  },
+  {
+   "wav": "./data/ES/audio/#01_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#03_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#24_SX2_A_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#06_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#13_SX2_B_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#46_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#23_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#30_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#33_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#36_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#26_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#38_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#4_SX2_C_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/ES/audio/#05_SX2_Normal_ES_LH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#16_SX2_A_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#39_SX2_Normal_ES_RH_2_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#04_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#07_SX2_B_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/ES/audio/#10_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#14_SX2_Normal_ES_RH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#39_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/ES/audio/#12_SX2_Normal_ES_LH_1_3_Mic_30cm_S.wav",
+   "labels": "Normal"
+  }
+ ]
+}

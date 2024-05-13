@@ -12,3 +12,15 @@ src/gen_weight_file.py
 src/test.py
 src/test_wget.py
 .idea
+
+sample_audios/*
+egs/mdps/data/1.0RPS/audio/*.wav
+egs/mdps/data/1.0RPS/meta/*.csv
+egs/mdps/data/ES/audio/*.wav
+egs/mdps/data/ES/meta/*.csv
+egs/mdps/data/LINE/audio/*.wav
+egs/mdps/data/LINE/meta/*.csv
+
+exp/
+*.pickle
+*.pkl

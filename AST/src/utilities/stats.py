@@ -56,3 +56,5 @@ def calculate_stats(output, target):
 
     return stats
 
+def calculate_confusion_matrix(output, target):
+    return metrics.confusion_matrix(np.argmax(target, 1), np.argmax(output, 1))
