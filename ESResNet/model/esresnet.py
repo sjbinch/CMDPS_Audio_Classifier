@@ -421,7 +421,7 @@ class _ESResNet(ResNet):
 
             # print(current_x.max())
             current_spec, _ = time_segmentation(
-                current_x, 12800, nperseg=2046, noverlap=1536, is_ecma=False
+                current_x, 12800, nperseg=2046, noverlap=768, is_ecma=False
             )
             
             nfft = current_spec.shape[0]
