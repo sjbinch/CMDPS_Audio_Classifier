@@ -17,6 +17,12 @@ from typing import Union
 from typing import Optional
 from typing import Sequence
 
+from mosqito.utils.time_segmentation import time_segmentation
+from numpy.fft import fft
+import librosa
+import matplotlib.pyplot as plt
+
+
 
 def conv3x3(in_planes, out_planes, stride=1):
     """3x3 convolution with padding"""
@@ -383,7 +389,9 @@ class _ESResNet(ResNet):
                 y: Optional[torch.Tensor] = None) -> Union[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]]:
 
         pow_spec = self.spectrogram(x)
-        x_db = torch.log10(pow_spec).mul(10.0)
+        x_db = pow_spec
+        
+        # print(x_db.shape) # torch.Size([16, 1, 3, 85, 1517])
 
         outputs = list()
         for ch_idx in range(x_db.shape[1]):
@@ -402,61 +410,72 @@ class _ESResNet(ResNet):
 
     def spectrogram(self, x: torch.Tensor) -> torch.Tensor:
         
-        # print(0)
-        # print(x.shape)  # torch.Size([16, 1, 220500])
-        # print(x.view(-1, x.shape[-1]).shape)  # torch.Size([16, 220500])
+        # print(x.shape)  # torch.Size([16, 1, 194048])
         
-        spec = torch.stft(
-            x.view(-1, x.shape[-1]),
-            n_fft=self.n_fft,
-            hop_length=None,
-            win_length=None,
-            window=self.window,
-            pad_mode='reflect',
-            normalized=self.normalized,
-            onesided=True
-        )
+        x = x.cpu().numpy()
 
-        # print(1)
-        # print(spec.shape)  # torch.Size([16, 1025, 394, 2])
+        spec = []
 
-        if not self.onesided:
-            spec = torch.cat((torch.flip(spec, dims=(-3,)), spec), dim=-3)
+        for i in range(x.shape[0]):
+            current_x = x[i, 0, :]
 
-        # print(2)
-        # print(spec.shape)  # torch.Size([16, 1025, 394, 2])
-
-        spec_height_3_bands = spec.shape[-3] // 3
-        spec_height_single_band = 3 * spec_height_3_bands
-        spec = spec[:, :spec_height_single_band]
-
-        # print(3)
-        # print(spec.shape)  # torch.Size([16, 1023, 394, 2])
-
-        spec = spec.reshape(x.shape[0], -1, spec.shape[-3] // 3, *spec.shape[-2:])
-
-        spec_height = spec.shape[-3] if self.spec_height < 1 else self.spec_height
-        spec_width = spec.shape[-2] if self.spec_width < 1 else self.spec_width
-
-        # print(4)
-        # print(spec.shape)  # torch.Size([16, 3, 341, 394, 2])
-        # print(spec_height)
-        # print(spec_width)
-        # afdsafas
-
-        pow_spec = spec[..., 0] ** 2 + spec[..., 1] ** 2
-
-        if spec_height != pow_spec.shape[-2] or spec_width != pow_spec.shape[-1]:
-            pow_spec = F.interpolate(
-                pow_spec,
-                size=(spec_height, spec_width),
-                mode='bilinear',
-                align_corners=True
+            # print(current_x.max())
+            current_spec, _ = time_segmentation(
+                current_x, 12800, nperseg=2046, noverlap=1536, is_ecma=False
             )
+            
+            nfft = current_spec.shape[0]
+            nseg = current_spec.shape[1]
+            window = np.hanning(nfft)
+            window = np.tile(window,(nseg,1)).T
+            # spec = 1 / np.mean(window[:,0]) * fft(sig * window, n=nfft, axis=0)/nperseg
+            current_spec = fft(current_spec, n=nfft, axis=0)[0:nfft//2]
+            current_spec = 2*abs(current_spec)/nfft
 
-        pow_spec = torch.where(pow_spec > 0.0, pow_spec, torch.full_like(pow_spec, self.log10_eps))
+            current_spec = 20 * (np.log10(current_spec*50000)) # 진동데이터는 50000 대신 10**6
 
-        pow_spec = pow_spec.view(x.shape[0], -1, 3, *pow_spec.shape[-2:])
+
+            # A_weighting
+
+            n_fft = (current_spec.shape[0] - 1) * 2
+
+            # 주파수 bins 계산
+            freqs = np.linspace(0, 12800 / 2, current_spec.shape[0])
+                
+            # A-weighting dB 값 계산
+            a_weighting_db = librosa.A_weighting(freqs)
+                
+            # 텐서로 변환
+            a_weighting_scale_tensor = a_weighting_db
+                
+            # A-weighted STFT 계산
+            current_spec = current_spec + np.expand_dims(a_weighting_scale_tensor, axis=1)
+
+
+            spec.append(current_spec)
+
+        # Stack the results to form the final output array
+        spec = np.stack(spec)
+        spec = torch.from_numpy(spec).float().cuda()
+
+        spec = torch.where(spec < 0, torch.tensor(0, dtype=spec.dtype, device=spec.device), spec)
+
+
+        # print(spec.shape)  # torch.Size([16, 1023, 126])
+
+
+        spec = spec.reshape(x.shape[0], 3, spec.shape[-2] // 3, *spec.shape[-1:])
+
+        spec_height = spec.shape[-2] if self.spec_height < 1 else self.spec_height
+        spec_width = spec.shape[-1] if self.spec_width < 1 else self.spec_width
+
+        # print(spec.shape)  # torch.Size([16, 3, 341, 126])
+
+        pow_spec = spec.view(x.shape[0], -1, 3, *spec.shape[-2:])
+
+        # print(pow_spec.shape)  # torch.Size([16, 1, 3, 341, 126])
+        # print(pow_spec.max())  # 43.2223
+
 
         return pow_spec
 

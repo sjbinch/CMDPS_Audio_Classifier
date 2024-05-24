@@ -47,9 +47,9 @@
     }
   },
   "Dataset": {
-    "class": "utils.datasets.RPS_binary",
+    "class": "utils.datasets.CMDPS_binary",
     "args": {
-      "root": "/home/sjbang/workspace/BDAI_Mobis/ESResNet/dataset/1.0RPS",
+      "root": "/home/sjbang/workspace/BDAI_Mobis/ESResNet/dataset/ES",
       "sample_rate": 12800,
       "fold": 0,
       "training": {"key": "train", "yes": true, "no": false}

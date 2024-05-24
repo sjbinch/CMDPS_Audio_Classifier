@@ -171,6 +171,9 @@ def run(experiment_name: str,
                 y = y.to(device)
 
                 y_pred = model(x)
+                
+                # print('y_pred : ', torch.max(y_pred, dim=1)[1])
+                # print('y_GT : ', y)
 
             return y_pred, y
 
