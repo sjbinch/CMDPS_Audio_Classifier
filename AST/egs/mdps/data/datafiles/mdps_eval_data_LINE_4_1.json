@@ -1,0 +1,440 @@
+{
+ "data": [
+  {
+   "wav": "./data/LINE_4/audio/#30_SX2_A_LINE_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#19_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#42_SX2_C_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#23_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#19_SX2_C_LINE_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#20_SX2_Normal_Line_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#18_SX2_A_ES_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#38_SX2_B_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#07_SX2_B_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#24_SX2_B_LINE_LH_1_4_\ubaa8\ud130_+Z.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#02_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#30_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#36_SX2_B_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#19_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#03_SX2_B_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#10_SX2_A_LINE_LH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#30_SX2_C_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#26_SX2_Normal_Line_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#43_SX2_C_LINE_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#14_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#18_SX2_B_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#07_SX2_A_LINE_RH_1_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#18_SX2_A_ES_LINE_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#43_SX2_Normal_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#24_SX2_C_LINE_LH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#01_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#04_SX2_A_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#14_SX2_B_Line_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#03_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#27_SX2_A_Line_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#18_SX2_B_LINE_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#46_SX2_Normal_LINE_LH_1_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#37_SX2_A_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#14_SX2_C_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#11_SX2_B_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#43_SX2_C_LINE_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#37_SX2_B_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#19_SX2_Normal_Line_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#11_SX2_A_LINE_LH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#25_SX2_A_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#28_SX2_B_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "GRR"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#28_SX2_C_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#37_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#4_SX2_C_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#45_SX2_Normal_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#20_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#16_SX2_B_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#30_SX2_B_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#32_SX2_A_LINE_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#08_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#31_SX2_A_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#38_SX2_C_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#30_SX2_C_LINE_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#03_SX2_Normal_Line_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#44_SX2_C_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#05_SX2_A_LINE_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "GRR"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#27_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#15_SX2_A_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#18_SX2_B_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#41_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#10_SX2_B_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#01_SX2_A_LINE_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "GRR"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#20_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#32_SX2_A_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#18_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#28_SX2_C_LINE_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#11_SX2_C_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#17_SX2_B_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#25_SX2_A_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#35_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#20_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#39_SX2_Normal_Line_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#05_SX2_B_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#17_SX2_A_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#18_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#10_SX2_B_LINE_LH_1_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#16_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#31_SX2_A_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#17_SX2_A_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#21_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#10_SX2_A_LINE_RH_1_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#09_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#22_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#46_SX2_Normal_LINE_RH_2_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#01_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#03_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#21_SX2_C_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#06_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#14_SX2_B_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#24_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#23_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#40_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#42_SX2_B_LINE_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#36_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#20_SX2_B_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#34_SX2_Normal_Line_RH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#45_SX2_B_LINE_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#05_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#41_SX2_A_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#2_SX2_A_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#04_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#33_SX2_B_LINE_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#10_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#33_SX2_C_LINE_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "SG"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#39_SX2_Normal_Line_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#12_SX2_Normal_Line_LH_2_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#24_SX2_Normal_Line_LH_1_4_Motor_Center_+Y.wav",
+   "labels": "Normal"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#34_SX2_B_LINE_RH_2_4_Motor_Center_+Y.wav",
+   "labels": "DOL"
+  },
+  {
+   "wav": "./data/LINE_4/audio/#04_SX2_A_LINE_LH_1_4_\ubaa8\ud130_+Z.wav",
+   "labels": "Normal"
+  }
+ ]
+}

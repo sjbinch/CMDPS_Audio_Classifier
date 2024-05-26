@@ -12,7 +12,10 @@
 import csv
 import json
 import torchaudio
+import librosa
 import numpy as np
+from numpy.fft import fft
+from mosqito.utils.time_segmentation import time_segmentation
 import torch
 import torch.nn.functional
 from torch.utils.data import Dataset
@@ -63,7 +66,7 @@ def preemphasis(signal,coeff=0.97):
     return np.append(signal[0],signal[1:]-coeff*signal[:-1])
 
 class AudiosetDataset(Dataset):
-    def __init__(self, dataset_json_file, audio_conf, label_csv=None, mdps=False):
+    def __init__(self, dataset_json_file, audio_conf, label_csv=None, mdps=False, sample_type=''):
         """
         Dataset that manages audio recordings
         :param audio_conf: Dictionary containing the audio loading and preprocessing settings
@@ -100,16 +103,47 @@ class AudiosetDataset(Dataset):
             print('now use noise augmentation')
 
         self.mdps = mdps
+        self.sample_type = sample_type
         self.index_dict = make_index_dict_mdps(num_class=audio_conf.get('num_class')) if mdps else make_index_dict(label_csv)
         self.label_num = len(set(self.index_dict.values()))
         print('number of classes is {:d}'.format(self.label_num))
 
 
     def _wav2stft(self, filename):
-        waveform, sr = torchaudio.load(filename)
-        waveform = waveform - waveform.mean()
+        input_array, sr = librosa.load(filename, sr=12800, mono=True)
+        nperseg = 2048 # fs = 12800Hz 기준 Δt = 0.16s(Δf = 6.25Hz)
+        noverlap = 384*4 # hop size(noverlap = TL time increment)
 
-        result = torchaudio.transforms.Spectrogram(n_fft=512, hop_length=128)(waveform.flatten()).t()
+        sig, _ = time_segmentation(
+                input_array, sr, nperseg=nperseg, noverlap=noverlap, is_ecma=False
+            )
+
+        sig = torch.from_numpy(sig).half()
+
+        nfft = sig.shape[0]
+        nseg = sig.shape[1]
+        window = np.hanning(nfft)
+        window = np.tile(window,(nseg,1)).T
+
+        spec = fft(sig, n=nfft, axis=0)[0:nfft//2]
+        spec_abs = 2*abs(spec)/nfft
+
+        if 'LINE' in self.sample_type:
+            spec_abs = 20 * (np.log10(spec_abs*1e6)) # 진동데이터는 50000 대신 10**6
+        else:
+            spec_abs = 20 * (np.log10(spec_abs*50000)) # 진동데이터는 50000 대신 10**6
+
+        if 'LINE' in self.sample_type:
+            result = torch.from_numpy(spec_abs).half().T
+        else:
+            stft_result = torch.from_numpy(spec_abs).half()
+            freqs = np.linspace(0, 12800 / 2, stft_result.size(0))
+            a_weighting_db = librosa.A_weighting(freqs)
+            a_weighting_scale_tensor = torch.from_numpy(a_weighting_db).half()
+            a_weighted_stft = stft_result + a_weighting_scale_tensor.unsqueeze(1)
+            a_weighted_stft = a_weighted_stft.T
+            result = torch.where(a_weighted_stft < 0.0, torch.tensor(0, dtype=a_weighted_stft.dtype), a_weighted_stft)
+
         target_length = self.audio_conf.get('target_length')
         n_frames = result.shape[0]
 

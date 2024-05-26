@@ -20,6 +20,8 @@ egs/mdps/data/ES/audio/*.wav
 egs/mdps/data/ES/meta/*.csv
 egs/mdps/data/LINE/audio/*.wav
 egs/mdps/data/LINE/meta/*.csv
+egs/mdps/data/*/audio/*.wav
+egs/mdps/data/*/meta/*.csv
 
 exp/
 *.pickle
