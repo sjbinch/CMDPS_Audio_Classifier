@@ -9,6 +9,7 @@
 
 import argparse
 import numpy as np
+import pandas as pd
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("--exp_path", type=str, default='', help="the root path of the experiment")
@@ -35,6 +36,10 @@ if __name__ == '__main__':
         # note this is the best epoch based on AVERAGED accuracy across 5 folds, not the best epoch for each fold (which leads to over-optimistic results), this gives more fair result.
         acc_fold.append(result[best_epoch, 0])
         print('Fold {:d} accuracy: {:.4f}'.format(fold, result[best_epoch, 0]))
+        print(result[best_epoch, -1])
     acc_fold.append(np.mean(acc_fold))
+    cf_result = pd.read_csv(args.exp_path+'/fold1/cf_result.csv', header=None)
+    best_cf = cf_result[0][best_epoch+1]
     print('The averaged accuracy of 1 folds is {:.3f}'.format(acc_fold[-1]))
+    print(best_cf)
     np.savetxt(args.exp_path + '/acc_fold.csv', acc_fold, delimiter=',')

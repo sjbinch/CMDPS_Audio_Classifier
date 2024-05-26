@@ -14,6 +14,7 @@ import time
 import torch
 from torch import nn
 import numpy as np
+import pandas as pd
 import pickle
 from torch.cuda.amp import autocast,GradScaler
 
@@ -97,6 +98,7 @@ def train(audio_model, train_loader, test_loader, args):
     print("current #steps=%s, #epochs=%s" % (global_step, epoch))
     print("start training...")
     result = np.zeros([args.n_epochs, 10])
+    cf_result = []
     audio_model.train()
     n_gpu = torch.cuda.device_count()
     while epoch < args.n_epochs + 1:
@@ -202,7 +204,10 @@ def train(audio_model, train_loader, test_loader, args):
             result[epoch-1, :] = [mAP, mAUC, average_precision, average_recall, d_prime(mAUC), loss_meter.avg, valid_loss, cum_mAP, cum_mAUC, optimizer.param_groups[0]['lr']]
         else:
             result[epoch-1, :] = [acc, mAUC, average_precision, average_recall, d_prime(mAUC), loss_meter.avg, valid_loss, cum_acc, cum_mAUC, optimizer.param_groups[0]['lr']]
+            cf_result.append(str(cf_matrix))
+
         np.savetxt(exp_dir + '/result.csv', result, delimiter=',')
+        pd.DataFrame(cf_result).to_csv(exp_dir + '/cf_result.csv', index=False)
         print('validation finished')
 
         if mAP > best_mAP:

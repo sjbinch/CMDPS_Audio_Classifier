@@ -16,7 +16,7 @@ export TORCH_HOME=../../pretrained_models
 
 model=ast
 dataset=mdps
-sample_type=ES
+sample_type=LINE_4
 imagenetpretrain=True
 audiosetpretrain=False
 bal=none
@@ -26,14 +26,15 @@ then
 else
   lr=1e-4
 fi
-freqm=50
+freqm=0
 timem=0
 mixup=0
-epoch=50
-batch_size=8
+epoch=60
+batch_size=48
 fstride=10
 tstride=10
-model_size=tiny224
+model_size=base384
+noverlap=1536
 
 dataset_mean=0
 dataset_std=1
@@ -49,7 +50,7 @@ lrscheduler_decay=0.85
 
 n_class=2
 
-base_exp_dir=./exp/test-${dataset}-${sample_type}-f$fstride-t$tstride-imp$imagenetpretrain-asp$audiosetpretrain-b$batch_size-lr${lr}
+base_exp_dir=./exp/test-${dataset}-${noverlap}-${sample_type}-class$n_class-${model_size}-f$fstride-t$tstride-imp$imagenetpretrain-asp$audiosetpretrain-b$batch_size-lr${lr}
 
 python ./prep_mdps.py
 

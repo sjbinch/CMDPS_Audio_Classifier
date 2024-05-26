@@ -21,6 +21,9 @@ import models
 import numpy as np
 from traintest import train, validate
 
+import warnings
+warnings.filterwarnings('ignore')
+
 if __name__ == "__main__":
 
     if sys.platform == "win32":
@@ -110,11 +113,16 @@ if __name__ == "__main__":
 
     if args.dataset == 'mdps':
         if args.sample_type == '1.0RPS':
-            args.audio_length = 1500
+            args.audio_length = 108
         elif args.sample_type == 'ES':
-            args.audio_length = 1500
+            args.audio_length = 98
         elif args.sample_type == 'LINE':
-            args.audio_length = 600
+            args.audio_length = 24
+        elif args.sample_type == 'LINE_4':
+            args.audio_length = 24
+        elif args.sample_type == 'LINE_7':
+            args.audio_length = 24
+        # args.audio_length *= 2
 
     # transformer based model
     if args.model == 'ast':
@@ -127,9 +135,9 @@ if __name__ == "__main__":
         # # if add noise for data augmentation, only use for speech commands
         # noise = {'audioset': False, 'esc50': False, 'speechcommands':True}
 
-        audio_conf = {'num_mel_bins': 128, 'target_length': args.audio_length, 'freqm': args.freqm, 'timem': args.timem, 'mixup': args.mixup, 'dataset': args.dataset,
+        audio_conf = {'num_mel_bins': 1024, 'target_length': args.audio_length, 'freqm': args.freqm, 'timem': args.timem, 'mixup': args.mixup, 'dataset': args.dataset,
         'mode':'train', 'mean':args.dataset_mean, 'std':args.dataset_std, 'noise':args.noise, 'num_class':args.n_class}
-        val_audio_conf = {'num_mel_bins': 128, 'target_length': args.audio_length, 'freqm': 0, 'timem': 0, 'mixup': 0, 'dataset': args.dataset, 'mode':'evaluation', 
+        val_audio_conf = {'num_mel_bins': 1024, 'target_length': args.audio_length, 'freqm': 0, 'timem': 0, 'mixup': 0, 'dataset': args.dataset, 'mode':'evaluation', 
         'mean':args.dataset_mean, 'std':args.dataset_std, 'noise':False, 'num_class':args.n_class}
         mdps = True if args.dataset == 'mdps' else False
 
@@ -144,16 +152,16 @@ if __name__ == "__main__":
                 batch_size=args.batch_size, sampler=sampler, num_workers=args.num_workers, pin_memory=True)
         else:
             print('balanced sampler is not used')
-            train_dataset = dataloader.AudiosetDataset(args.data_train, label_csv=args.label_csv, audio_conf=audio_conf, mdps=mdps)
+            train_dataset = dataloader.AudiosetDataset(args.data_train, label_csv=args.label_csv, audio_conf=audio_conf, mdps=mdps, sample_type=args.sample_type)
             train_loader = torch.utils.data.DataLoader(
                 train_dataset,
                 batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, pin_memory=True, drop_last=True)
 
         val_loader = torch.utils.data.DataLoader(
-            dataloader.AudiosetDataset(args.data_val, label_csv=args.label_csv, audio_conf=val_audio_conf, mdps=mdps),
+            dataloader.AudiosetDataset(args.data_val, label_csv=args.label_csv, audio_conf=val_audio_conf, mdps=mdps, sample_type=args.sample_type),
             batch_size=args.batch_size*2, shuffle=False, num_workers=args.num_workers, pin_memory=True, drop_last=True)
 
-        audio_model = models.ASTModel(label_dim=args.n_class, fstride=args.fstride, tstride=args.tstride, input_fdim=257,
+        audio_model = models.ASTModel(label_dim=args.n_class, fstride=args.fstride, tstride=args.tstride, input_fdim=1024,
                                     input_tdim=args.audio_length, imagenet_pretrain=args.imagenet_pretrain,
                                     audioset_pretrain=args.audioset_pretrain, model_size=args.model_size)
 

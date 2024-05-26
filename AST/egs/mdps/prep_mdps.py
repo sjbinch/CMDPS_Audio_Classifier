@@ -44,7 +44,7 @@ def get_immediate_files(a_dir):
 if os.path.exists('./data/datafiles') == False:
     os.mkdir('./data/datafiles')
 
-for sample_type in ['1.0RPS','ES','LINE']:
+for sample_type in ['1.0RPS','ES','LINE_4','LINE_7']:
     fold = 1
     base_path = f"./data/{sample_type}/audio/"
 
